@@ -1,5 +1,6 @@
 from socketserver import BaseRequestHandler, UDPServer
 import time
+#get message and client socket
 
 class TimeHandler(BaseRequestHandler):
     def handle(self):
@@ -8,6 +9,8 @@ class TimeHandler(BaseRequestHandler):
         msg, sock = self.request
         resp = time.ctime()
         sock.sendto(resp.encode('ascii'), self.client_address)
+
+
 
 if __name__ == '__main__':
     serv = UDPserver(('', 20000), TimeHandler)
